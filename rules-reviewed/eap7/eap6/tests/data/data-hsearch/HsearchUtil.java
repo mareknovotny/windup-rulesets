@@ -1,3 +1,6 @@
+package org.jboss.windup.hsearch;
+
+
 import org.hibernate.search.engine.impl.SearchMappingBuilder;
 import org.apache.lucene.queryparser.flexible.core.builders.QueryBuilder;
 import org.hibernate.search.Search;
