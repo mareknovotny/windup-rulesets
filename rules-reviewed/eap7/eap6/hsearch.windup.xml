@@ -25,7 +25,7 @@
                     <tag>hibernate-search</tag>
                 </classification>
             </perform>
-        </rule>        
+        </rule>
         <rule id="hsearch-00001">
             <when>
                 <javaclass references="org.hibernate.search.engine.impl.SearchMappingBuilder" />
@@ -207,7 +207,7 @@
             </when>
             <perform>
                 <hint title="Deprecated Interface org.hibernate.search.store.IndexShardingStrategy in Hibernate Search 5" effort="1" severity="optional">
-                    <message>`org.hibernate.search.store.IndexShardingStrategy` interface is deprecated as of Hibernate Search 4.4. Might be removed in Hibernate Search 5. 
+                    <message>`org.hibernate.search.store.IndexShardingStrategy` interface is deprecated as of Hibernate Search 4.4. Might be removed in Hibernate Search 5.
                     Use `org.hibernate.search.store.ShardIdentifierProvider` instead.</message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_hibernate_search_changes"
@@ -287,7 +287,7 @@
             </when>
             <perform>
                 <hint title="Deprecated class org.hibernate.search.filter.StandardFilterKey in Hibernate Search 5" effort="1" severity="optional">
-                    <message>Custom filter keys `StandardFilterKey` are deprecated and are scheduled for removal in Hibernate Search 6. 
+                    <message>Custom filter keys `StandardFilterKey` are deprecated and are scheduled for removal in Hibernate Search 6.
                     As of Hibernate Search 5.1, keys for caching Lucene filters are calculated automatically based on the given filter parameters.</message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_hibernate_search_changes"
@@ -342,8 +342,8 @@
             </when>
             <perform>
                 <hint title="Deprecated annotation org.hibernate.search.annotations.Key in Hibernate Search 5" effort="1" severity="optional">
-                    <message>Custom filter cache keys are a deprecated feature scheduled to be removed in Hibernate Search 6. 
-                    As of Hibernate Search 5.1, filter cache keys will be determinated automatically based on the filter parameters. 
+                    <message>Custom filter cache keys are a deprecated feature scheduled to be removed in Hibernate Search 6.
+                    As of Hibernate Search 5.1, filter cache keys will be determinated automatically based on the filter parameters.
                     Custom filter cache key methods should therefore be removed.</message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_hibernate_search_changes"
@@ -358,8 +358,8 @@
             </when>
             <perform>
                 <hint title="Deprecated Enum Constants in Hibernate Search 5" effort="1" severity="optional">
-                    <message>The `IndexWriterSetting.MAX_THREAD_STATES` and `IndexWriterSetting.TERM_INDEX_INTERVAL` enum constants are deprecated. 
-                    They affect which properties are read from the configuration, so the fact they they are missing means that configuration properties such as `hibernate.search.Animals.2.indexwriter.term_index_interval = default` are now ignored. 
+                    <message>The `IndexWriterSetting.MAX_THREAD_STATES` and `IndexWriterSetting.TERM_INDEX_INTERVAL` enum constants are deprecated.
+                    They affect which properties are read from the configuration, so the fact they they are missing means that configuration properties such as `hibernate.search.Animals.2.indexwriter.term_index_interval = default` are now ignored.
                     The only side effect is that the property is not applied.</message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_miscellaneous_hibernate_search_changes"
@@ -414,7 +414,7 @@
             <perform>
                 <hint title="Usage of internal AbstractJMSHibernateSearchController class in Hibernate Search 5" effort="1"
                     severity="mandatory">
-                    <message>The JMS backend was depending to Hibernate ORM. This dependency was removed, so that the backend can be used in other (non ORM) environments as well. 
+                    <message>The JMS backend was depending to Hibernate ORM. This dependency was removed, so that the backend can be used in other (non ORM) environments as well.
                     A consequence is that implementors of `org.hibernate.search.backend.impl.jms.AbstractJMSHibernateSearchController` will need to adjust to the new signature.
                      This class is really considered internal. We suggest to take this class as an example instead of extending it.</message>
                     <link
@@ -434,7 +434,7 @@
             <perform>
                 <hint title="Implementing ServiceProvider in Hibernate Search 5" effort="1"
                     severity="mandatory">
-                    <message>The `org.hibernate.search.engine.service.spi.ServiceProvider` SPI got refactored. 
+                    <message>The `org.hibernate.search.engine.service.spi.ServiceProvider` SPI has been refactored.
                     If you where integrating with the old service contract, refer to the javadoc of `ServiceManager`, `Service`, `Startable` and `Stoppable` for details about the new contract.</message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_miscellaneous_hibernate_search_changes"
@@ -463,15 +463,15 @@
             <perform>
                 <hint title="Indexing of id Fields of Embedded Relations" effort="1" severity="mandatory">
                     <message><![CDATA[
-                     When using an `@IndexedEmbedded` annotation to include fields from a related entity, 
-                     the id of the related entity is no longer included. 
-                     
+                     When using an `@IndexedEmbedded` annotation to include fields from a related entity,
+                     the id of the related entity is no longer included.
+
                      You can enable the inclusion of the id by using the `includeEmbeddedObjectId` attribute of the `@IndexedEmbedded` annotation.
-                    
+
                     ```java
                     @IndexedEmbedded(includeEmbeddedObjectId=true)
                     ```
-                    
+
                     ]]></message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_miscellaneous_hibernate_search_changes"
@@ -492,25 +492,25 @@
             </when>
             <perform>
                 <hint title="Hibernate Search 5 changes indexing null values" effort="1" severity="mandatory">
-                    <message>Numbers and dates are now indexed as numeric fields by default. Properties of type int, long, float, double, and their 
-            corresponding wrapper classes are no longer indexed as strings. Instead, they are now indexed using Lucene’s appropriate numeric 
-            encoding. The id fields are an exception to this rule. Even when they are represented by a numeric type, they are still indexed as 
-            a string keyword by default. The use of `@NumericField` is now obsolete unless you want to specify a custom precision for the numeric 
-            encoding. You can keep the old string-based index format by explicitly specifying a string encoding field bridge. In the case of 
-            integers, this is the `org.hibernate.search.bridge.builtin.IntegerBridge`. Check the `org.hibernate.search.bridge.builtin` package for 
+                    <message>Numbers and dates are now indexed as numeric fields by default. Properties of type int, long, float, double, and their
+            corresponding wrapper classes are no longer indexed as strings. Instead, they are now indexed using Lucene’s appropriate numeric
+            encoding. The id fields are an exception to this rule. Even when they are represented by a numeric type, they are still indexed as
+            a string keyword by default. The use of `@NumericField` is now obsolete unless you want to specify a custom precision for the numeric
+            encoding. You can keep the old string-based index format by explicitly specifying a string encoding field bridge. In the case of
+            integers, this is the `org.hibernate.search.bridge.builtin.IntegerBridge`. Check the `org.hibernate.search.bridge.builtin` package for
             other publicly available field bridges.
 
-            Date and Calendar are no longer indexed as strings. Instead, instances are encoded as long values representing the number 
+            Date and Calendar are no longer indexed as strings. Instead, instances are encoded as long values representing the number
             of milliseconds since January 1, 1970, 00:00:00 GMT. You can switch the indexing format by using the new EncodingType enum. For example:
-        
+
         ```java
         @DateBridge(encoding=EncodingType.STRING)
         @CalendarBridge(encoding=EncodingType.STRING)
         ```
-        
-        The encoding change for numbers and dates is important and can have a big impact on application behavior. If you have 
-            a query that targets a field that was previously string-encoded, but is now encoded numerically, you must update the query. Numeric 
-             fields must be searched with a NumericRangeQuery. You must also make sure that all fields targeted by faceting are string encoded. 
+
+        The encoding change for numbers and dates is important and can have a big impact on application behavior. If you have
+            a query that targets a field that was previously string-encoded, but is now encoded numerically, you must update the query. Numeric
+             fields must be searched with a NumericRangeQuery. You must also make sure that all fields targeted by faceting are string encoded.
             If you use the Search query DSL, the correct query should be created automatically for you.
             </message>
                     <link
@@ -536,8 +536,8 @@
             </when>
             <perform>
                 <hint title="Changes in indexing null values" effort="1" severity="mandatory">
-                    <message>When using `@Field(indexNullAs=)` to encode a null marker value in the index, the type of the marker must be compatible with all other values that are indexed in that same field. 
-                    For example, it was previously possible to encode a null value for numeric fields using a string _null_. 
+                    <message>When using `@Field(indexNullAs=)` to encode a null marker value in the index, the type of the marker must be compatible with all other values that are indexed in that same field.
+                    For example, it was previously possible to encode a null value for numeric fields using a string _null_.
                     This is no longer allowed. Instead, you must choose a number to represent the null value, such as -1. </message>
                     <link
                         href="https://access.qa.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/migration-guide/#migrate_miscellaneous_hibernate_search_changes"
@@ -816,7 +816,7 @@ fulltextQuery.setSort(new Sort(new SortField("title", SortField.Type.STRING)))
                 </hint>
             </perform>
         </rule>
-        <!-- Lucene's core o.a.l.queryParser QueryParsers have been consolidated into lucene/queryparser, where other QueryParsers 
+        <!-- Lucene's core o.a.l.queryParser QueryParsers have been consolidated into lucene/queryparser, where other QueryParsers
             from the codebase will also be placed. The following classes were moved: -->
         <!-- o.a.l.queryParser.CharStream -> o.a.l.queryparser.classic.CharStream -->
         <!-- o.a.l.queryParser.FastCharStream -> o.a.l.queryparser.classic.FastCharStream -->

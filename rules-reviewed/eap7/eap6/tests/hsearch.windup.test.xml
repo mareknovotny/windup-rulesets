@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruletest xmlns="http://windup.jboss.org/schema/jboss-ruleset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="hsearch" xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
     <testDataPath>data/data-hsearch</testDataPath>
+    <target>eap7</target>
     <ruleset>
         <rules>
             <rule id="hsearch-00000-test">
@@ -12,7 +13,7 @@
                 <perform>
                     <fail message="hsearch-00000 hint not found!"/>
                 </perform>
-            </rule>        
+            </rule>
             <rule id="hsearch-00001-test">
                 <when>
                     <not>
@@ -332,7 +333,7 @@
                 <perform>
                     <fail message="hsearch-00200 hint not found!"/>
                 </perform>
-            </rule>         
+            </rule>
             <rule id="hsearch-00210-test">
                 <when>
                     <not>

@@ -2,6 +2,8 @@ package org.jboss.windup.hsearch;
 
 
 import org.hibernate.search.engine.impl.SearchMappingBuilder;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.queryparser.flexible.core.builders.QueryBuilder;
 import org.hibernate.search.Search;
 import org.hibernate.SharedSessionBuilder;
@@ -53,9 +55,11 @@ import org.apache.lucene.queryParser.QueryParserToken;
 import org.apache.lucene.queryParser.QueryParserTokenMgrError;
 
 public class HsearchUtil {
-    
-    static FullTextSharedSessionBuilderDelegator(SharedSessionBuilder builder)
-    
+
+    static FullTextSharedSessionBuilderDelegator(SharedSessionBuilder builder) {
+
+    }
+
     public void main(String[] args) {
         
         FullTextSession fullTextSession = Search.getFullTextSession( s );
@@ -107,13 +111,13 @@ public class HsearchUtil {
         EntityDescriptor entityDescriptor = new EntityDescriptor();
         entityDescriptor.setCacheInMemory(new HashMap());
         entityDescriptor.getCacheInMemory();
-        NumericFieldMapping numMapping = new NumericFieldMapping("test", PropertyDescriptor property, entityDescriptor, new SearchMapping()));
-        
+        NumericFieldMapping numMapping = new NumericFieldMapping("foo", property, entityDescriptor, new SearchMapping());
+
         SearchMapping searchmapping =  new SearchMapping();
         IndexMapping indexMapping = new IndexMapping(searchmapping, entityDescriptor);
         indexMapping.cacheFromIndex(FieldCacheType.CLASS);
-        
-        ContainedInMapping containedMapping = new ContainedInMapping(PropertyDescriptor property, new EntityDescriptor(),searchMapping));
+
+        ContainedInMapping containedMapping = new ContainedInMapping(property, new EntityDescriptor(),searchMapping);
         numMapping = containedMapping.numericField();
         
         FullTextSharedSessionBuilder builder = new FullTextSharedSessionBuilderDelegator();
@@ -127,13 +131,13 @@ public class HsearchUtil {
         String querystr = "test*";
         Query query = parser.parse(querystr);
     }
-    
-    private String objectIdInString(Class<?> entityClass, Serializable id, ConversionContext conversionContext) { 
-        EntityIndexBinder indexBindingForEntity = searchFactory.getIndexBindingForEntity( entityClass ); 
-        if ( indexBindingForEntity == null ) { 
-         throw new SearchException( "Unable to find entity type metadata while deserializing: " + entityClass ); 
-        } 
-        DocumentBuilderIndexedEntity<?> documentBuilder = indexBindingForEntity.getDocumentBuilder(); 
-        return documentBuilder.objectToString( documentBuilder.getIdKeywordName(), id, conversionContext ); 
-       } 
+
+    private String objectIdInString(Class<?> entityClass, Serializable id, ConversionContext conversionContext) {
+        EntityIndexBinder indexBindingForEntity = searchFactory.getIndexBindingForEntity( entityClass );
+        if ( indexBindingForEntity == null ) {
+         throw new SearchException( "Unable to find entity type metadata while deserializing: " + entityClass );
+        }
+        DocumentBuilderIndexedEntity<?> documentBuilder = indexBindingForEntity.getDocumentBuilder();
+        return documentBuilder.objectToString( documentBuilder.getIdKeywordName(), id, conversionContext );
+       }
 }
